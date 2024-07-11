@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -18,12 +19,12 @@ class EquipmentsRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'name'=> [
+            'name' => [
                 'required',
                 'min:2',
                 'max:250',
@@ -34,7 +35,7 @@ class EquipmentsRequest extends FormRequest
                 'string',
                 'min:2',
             ],
-            'category_id' =>[
+            'category_id' => [
                 'required',
             ],
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
