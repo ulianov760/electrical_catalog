@@ -51,26 +51,31 @@
                 <a class="header__logo" href="/">
                     <img  src="{{asset('img/logo_el.png')}}" title="ULIANOVelektro" alt="ULIANOVelektro">
                 </a>
-
+               <div class="header__group">
+                   <div class="header__search">
+                       <button class="header__search-btn js-search-trigger" id="mobile-search">
+                           <img src="{{asset('img/search.svg')}}">
+                       </button>
+                       <div class="header__search-offcanvas"> </div>
+                   </div>
+               </div>
                 <div class="header__search">
-                    <div class="header__search-offcanvas">
+                    <div class="search-overlay" id="modal-search">
                         <div class="header__search-head">
-                            <button class="header__search-close js-search-trigger">
-                                <svg class="icon-close"><use xlink:href="catalog/view/theme/prostore/sprites/sprite.svg#icon-close"></use>
-                                </svg>
-                            </button>
-                            <span class="header__search-title">Поиск</span>
+                            <button class="header__search-close js-search-trigger" style="background-color: white" id="close-mobile">
+                                <img src="{{asset('img/close.svg')}}" style="position: absolute" class="icon-close">
+                             </button>
+                            <span class="header__search-title" style="color: black">Поиск</span>
                         </div>
                         <div class="header__search-body">
                             <div class="header__search-control">
-                                <input class="header__search-input js-search-input" type="search" name="search" value="" placeholder="Искать товары или категории" autocomplete="off">
-
-                                <button type="button" class="header__search-append js-search-btn">
-                                    <svg class="icon-search"><use xlink:href="catalog/view/theme/prostore/sprites/sprite.svg#icon-search"></use>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="header__search-autocomplete"></div>
+                            <input class="header__search-input js-search-input" type="search" name="search" id="searchInput-mobile" value="" placeholder="Искать оборудование" autocomplete="off">
+                            <button type="button" onclick="searchEquipmentMobile()" class="header__search-append js-search-btn"  >  <img src="{{asset('img/search_black.svg')}}" class="icon-search"></button>
+                        </div>
+                        </div>
+                        <div id="search_result" style="visibility: hidden" class="search-list-block">
+                            <ul name="" style="background-color: white" id="search-list-mobile">
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -168,7 +173,27 @@
 <script >
     const searchInput = document.getElementById('searchInput');
     const results = document.getElementById('search-list');
+    const searchInputMobile = document.getElementById('searchInput-mobile');
+    const resultsMobile = document.getElementById('search-list-mobile');
     const search = <?php echo $equipmentsSearch ?>;
+    const mobileSearch = document.getElementById('mobile-search');
+    const mobileClose = document.getElementById('close-mobile');
+
+    mobileClose.addEventListener('click',(e) =>{
+        e.preventDefault();
+        document.getElementById("modal-search").style.display = "none";
+    });
+
+    mobileSearch.addEventListener('click',(e) =>{
+        e.preventDefault();
+        document.getElementById("modal-search").style.display = "block";
+    });
+
+    function searchEquipmentMobile(){
+        if(searchInputMobile.value.trim().length > 0) {
+            window.location.href = "/search?name=" + searchInputMobile.value
+        }
+    }
 
     function searchEquipment(){
         if(searchInput.value.trim().length > 0) {
@@ -179,12 +204,16 @@
     searchInput.addEventListener('focus', (e) => {
         results.style.visibility = "visible"
     });
+    searchInputMobile.addEventListener('focus', (e) => {
+        resultsMobile.style.visibility = "visible"
+    });
     document.addEventListener('click', function (e) {
         if(e.target.tagName != "INPUT" && e.target.tagName != "UL" ){
             if(e.target.id != "searchInput" && e.target.id != "search-list" ){
                 results.style.visibility = "hidden"
             }
-        }})
+        }});
+
       function changeSelectSize(size) {
         setTimeout(() => {
             results.size = size;
@@ -198,6 +227,30 @@
             displayResults(filterResults.slice(0,5));
         }
     });
+
+    searchInputMobile.addEventListener('input', () => {
+        const query = searchInputMobile.value.toLowerCase();
+        if(query.trim().length > 0) {
+            const filterResults = search[1].filter(item => item.name.toLowerCase().includes(query));
+            displayResultsMobile(filterResults.slice(0,5));
+        }
+    });
+    function displayResultsMobile(resultsArray) {
+        resultsMobile.innerHTML = '';
+        let size = 1;
+        resultsArray.forEach(result => {
+            const li = document.createElement('li');
+            const a = document.createElement('a')
+            a.href = "/search?id="+result['id'];
+            a.textContent = result['name'];
+            li.appendChild(a);
+            resultsMobile.append(li);
+            size++;
+        });
+        let height = 20 * size +'px';
+        resultsMobile.style.height = height;
+        changeSelectSize(size);
+    }
 
     function displayResults(resultsArray) {
         results.innerHTML = '';

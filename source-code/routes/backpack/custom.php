@@ -18,7 +18,8 @@ Route::group(
         'namespace' => 'App\Http\Controllers\Admin',
     ],
     function () {
-        Route::crud('categories', 'CategoryCrudController');
+        Route::crud('', 'CategoryCrudController');
         Route::crud('equipments', 'EquipmentCrudController');
+        Route::redirect('dashboard','/admin');
     }
 ); // this should be the absolute last line of this file
