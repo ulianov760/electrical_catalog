@@ -3,6 +3,13 @@
     --theme-primary-color: #0000Cd;--theme-secondary-color: #00008B;
     --base-font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
+.search-overlay{height:100%;width:100%;display:none;position:fixed;z-index:1000;top:0;left:0;background-color:white;background-color:white;}
+.search-overlay .search-closebtn{position:absolute;top:20px;left:45px;font-size:60px;cursor:pointer;color:black;}
+.search-overlay .search-closebtn:hover{color:#ccc;}
+.search-overlay input[type=text]{padding:15px;font-size:17px;border:none;float:left;width:80%;background:white;}
+.search-overlay input[type=text]:hover{background:#f1f1f1;}
+.search-overlay button{float:left;width:20%;padding:15px;background:#ddd;font-size:17px;border:none;cursor:pointer;}
+.search-overlay button:hover{background:#bbb;}
 @media (max-width: 767px) {:root {font-size: 9px; --theme-size: 9px; }}
 body {font: 400 1.6rem/1.5 "Roboto", Arial, Helvetica, sans-serif;}
 input:not([class]),textarea:not([class]),select:not([class]),select.form-control,.ui-input, .ui-range__input, .ui-textarea,.form-control:not(select),.ui-select,.ui-select select,.personal__order-table-info{
