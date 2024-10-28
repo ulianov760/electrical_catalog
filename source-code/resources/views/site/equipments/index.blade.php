@@ -6,7 +6,6 @@
         <div class="breadcrumbs">
             <div class="container-fluid">
                 <h1 class="breadcrumbs__title">{{($currentCategory != "Поиск")?$currentCategory->name:"Поиск"}}</h1>
-                <small class="breadcrumbs__counter">1663 товара</small>
                 <ul class="breadcrumbs__menu">
                     <li><a class="breadcrumbs__link" href="/"><span>Главная</span></a>
                     </li>
