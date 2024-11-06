@@ -85,42 +85,7 @@
                     </div>
                 </div>
 
-                <!-- Popups :: Start-->
 
-
-                <div class="fancybox-is-hidden popup" id="popup-found-it-cheaper">
-                    <span class="popup__title">Нашли дешевле?</span>
-                    <div class="popup__form">
-                        <form>
-                            <fieldset class="ui-fieldset">
-                                <p>Если у конкурента цена ниже — сделаем скидку! Промокод отправим на телефон или электронную почту.</p>
-                            </fieldset>
-                            <fieldset class="ui-fieldset">
-                                <div class="ui-field">
-                                    <label class="ui-label required">Ваше имя</label>
-                                    <input class="ui-input" type="text" name="name" value="">
-                                </div>
-                                <div class="ui-field">
-                                    <label class="ui-label required">Электронная почта</label>
-                                    <input class="ui-input" type="email" name="email" value="">
-                                </div>
-                                <div class="ui-field">
-                                    <label class="ui-label">Ваш телефон</label>
-                                    <input class="ui-input" type="tel" name="phone" value="">
-                                </div>
-                                <div class="ui-field">
-                                    <label class="ui-label required">Ссылка на товар</label>
-                                    <input class="ui-input" type="text" name="link" value="">
-                                </div>
-                                <input type="hidden" name="product_id" value="42281">
-
-                                <button class="ui-btn ui-btn--60 ui-btn--primary ui-btn--fullwidth found_cheaper_send">Отправить</button>
-                            </fieldset>
-                        </form>
-                    </div>
-
-                </div>
-                <!-- Popups :: End-->
             </div>
         </div><!-- Sku :: End-->
         </div>
