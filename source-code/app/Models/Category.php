@@ -21,6 +21,15 @@ class Category extends Model
 
     public function equipment(): HasOne
     {
-        return $this->hasOne(Equipments::class);
+        return $this->hasOne(ElectricalEquipment::class);
+    }
+
+    public function delete()
+    {
+        if($this->equipment()->where('category_id',$this->attributes['id'])->exists()){
+            return false;
+        }
+        Category::where('id',$this->attributes['id'])->delete();
+        return true;
     }
 }

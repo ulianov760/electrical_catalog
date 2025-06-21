@@ -58,6 +58,12 @@
                                                             <img src="{{asset('/storage/'.$equipment->image)}}" width="220" height="220" alt="{{$equipment->name}}">
                                                         </div>
                                                         <span class="h2 products-categories__item-title">{{$equipment->name}}</span>
+                                                        <p class="products__item-price">
+                                                            <ins>{{$equipment->cost-$equipment->cost*($equipment->discount/100)}}₽</ins>
+                                                            @if($equipment->discount > 0)
+                                                            <del>{{$equipment->cost}}₽</del>
+                                                            @endif
+                                                        </p>
                                                     </a>
                                                 </li>
                                             @endforeach

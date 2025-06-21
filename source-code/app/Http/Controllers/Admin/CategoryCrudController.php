@@ -35,7 +35,7 @@ class CategoryCrudController extends CrudController
     {
         CRUD::setModel(Category::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '');
-        CRUD::setEntityNameStrings('new', 'Categories');
+        CRUD::setEntityNameStrings('категорию', 'Категории');
     }
 
     protected function setupShowOperation()
@@ -53,7 +53,7 @@ class CategoryCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('id')->label('ID');
-        CRUD::column('name')->label('Name')->searchLogic(
+        CRUD::column('name')->label('Название')->searchLogic(
             function ($query, $column, $searchTerm) {
                 $query->orWhere('name', 'ilike', '%' . $searchTerm . '%');
             }
@@ -82,6 +82,6 @@ class CategoryCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(CategoriesRequest::class);
-        CRUD::field('name')->label('Name')->type('text');
+        CRUD::field('name')->label('Название')->type('text');
     }
 }

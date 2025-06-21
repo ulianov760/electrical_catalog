@@ -20,6 +20,14 @@ Route::group(
     function () {
         Route::crud('', 'CategoryCrudController');
         Route::crud('equipments', 'EquipmentCrudController');
+        Route::crud('employees', 'EmployeeCrudController');
+        Route::crud('roles', 'RoleCrudController');
+        Route::crud('posts', 'PostCrudController');
+        Route::crud('status-orders', 'StatusOrderCrudController');
+        Route::crud('status-payments', 'StatusPaymentCrudController');
+        Route::crud('type-payments', 'TypePaymentCrudController');
+        Route::crud('clients', 'ClientCrudController');
+
         Route::redirect('dashboard','/admin');
     }
 ); // this should be the absolute last line of this file

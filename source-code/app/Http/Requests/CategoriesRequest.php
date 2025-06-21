@@ -26,7 +26,7 @@ class CategoriesRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'min:2',
+                'min:3',
                 'max:250',
                 Rule::unique('categories', 'name')->ignore(request()->id)
             ]

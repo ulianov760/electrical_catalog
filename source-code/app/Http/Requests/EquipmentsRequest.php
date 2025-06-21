@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ElectricalEquipment;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -26,11 +27,16 @@ class EquipmentsRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'min:2',
+                'min:3',
                 'max:250',
-                Rule::unique('equipments', 'name')->ignore(request()->id)
+                Rule::unique( ElectricalEquipment::class, 'name')->ignore(request()->id)
             ],
             'description' => [
+                'required',
+                'string',
+                'min:2',
+            ],
+            'characters' => [
                 'required',
                 'string',
                 'min:2',
@@ -38,7 +44,20 @@ class EquipmentsRequest extends FormRequest
             'category_id' => [
                 'required',
             ],
-            //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+            'count' => [
+                'required',
+                'integer',
+                'min:0',
+                'max:100',
+            ],
+            'discount' => [
+                '',
+                'integer',
+                'min:0',
+                'max:100',
+            ],
+            'image' => 'required',
         ];
     }
 }
