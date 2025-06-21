@@ -45,6 +45,12 @@ class EquipmentsRequest extends FormRequest
                 'required',
             ],
 
+            'cost' =>[
+                'required',
+                'numeric',
+                'min:10',
+                'max:1000000',
+            ],
             'count' => [
                 'required',
                 'integer',

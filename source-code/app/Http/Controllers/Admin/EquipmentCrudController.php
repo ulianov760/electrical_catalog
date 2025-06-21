@@ -62,7 +62,7 @@ class  EquipmentCrudController extends CrudController
         CRUD::column('category_id')->label('Ктаегория')->type('select');
         CRUD::column('count')->label('Количество')->type('number');
         CRUD::column('discount')->label('Скидка')->type('number');
-        CRUD::column('cost')->label('Стоимость')->type('number');
+        CRUD::column('cost')->label('Стоимость')->type('numeric');
         CRUD::column('is_deleted')->label('Удалено')->type('boolean');
     }
 
