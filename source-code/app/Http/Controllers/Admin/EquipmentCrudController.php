@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\EquipmentsAddRequest;
 use App\Http\Requests\EquipmentsRequest;
+use App\Models\ElectricalEquipment;
 use App\Models\Equipments;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -19,10 +20,9 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  *
  * @property-read CrudPanel $crud
  */
-class EquipmentCrudController extends CrudController
+class  EquipmentCrudController extends CrudController
 {
     use CreateOperation;
-    use DeleteOperation;
     use ListOperation;
     use ShowOperation;
     use UpdateOperation;
@@ -34,9 +34,9 @@ class EquipmentCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(Equipments::class);
+        CRUD::setModel(ElectricalEquipment::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/equipments');
-        CRUD::setEntityNameStrings('new', 'Equipments');
+        CRUD::setEntityNameStrings('оборудование', 'Электрооборудование');
     }
 
     protected function setupShowOperation()
@@ -54,12 +54,16 @@ class EquipmentCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('id')->label('ID');
-        CRUD::column('name')->label('Name')->searchLogic(
+        CRUD::column('name')->label('ФИО')->searchLogic(
             function ($query, $column, $searchTerm) {
                 $query->orWhere('name', 'ilike', '%' . $searchTerm . '%');
             }
         );
-        CRUD::column('category_id')->label('Category')->type('select');
+        CRUD::column('category_id')->label('Ктаегория')->type('select');
+        CRUD::column('count')->label('Количество')->type('number');
+        CRUD::column('discount')->label('Скидка')->type('number');
+        CRUD::column('cost')->label('Стоимость')->type('number');
+        CRUD::column('is_deleted')->label('Удалено')->type('boolean');
     }
 
     /**
@@ -84,19 +88,22 @@ class EquipmentCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(EquipmentsRequest::class);
-        CRUD::field('name')->label('Name')->type('text');
-        CRUD::field('description')->label('Description')->type('textarea');
-        CRUD::field('characters')->label('Characters')->type('textarea');
+        CRUD::field('name')->label('Название')->type('text');
+        CRUD::field('description')->label('Описание')->type('textarea');
+        CRUD::field('characters')->label('Характеристики')->type('textarea');
         CRUD::field(
             [
-                'label' => "Category",
+                'label' => "Категория",
                 'type' => 'select',
                 'name' => 'category_id',
                 'entity' => 'category',
             ]
         );
-
-        CRUD::field('image')->label('Image')->type('style_image');
+        CRUD::field('count')->label('Количество')->type('number')->default(0);
+        CRUD::field('discount')->label('Скидка')->type('number')->default(0);
+        CRUD::field('cost')->label('Стоимость')->type('number')->default(10);
+        CRUD::field('image')->label('Картинка')->type('style_image');
+        CRUD::field('is_deleted')->label('Удалено')->type('boolean')->default(false);
     }
 
 }

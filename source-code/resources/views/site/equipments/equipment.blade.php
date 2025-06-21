@@ -31,10 +31,6 @@
         <div class="sku">
             <div class="sku__view js-sku-view" style="position: relative;">
                 <div class="sku__view-head">
-                    <button class="sku__view-back" data-fancybox-close="">
-                        <svg class="icon-arrow-back"><use xlink:href="catalog/view/theme/prostore/sprites/sprite.svg#icon-arrow-back"></use>
-                        </svg>
-                    </button>
                     <span class="sku__view-title">{{$equipment->name}}</span>
                 </div>
                 <div class="sku__view-body">
@@ -80,6 +76,42 @@
 
                                     </div>
                                 </div>
+                                    <div class="sku__group order-1 order-xl-2">
+                                        <p class="sku__price ">
+                                            <ins class="sku__price-ins">{{$equipment->cost-$equipment->cost*($equipment->discount/100)}} ₽</ins>
+                                            @if($equipment->discount > 0)
+                                            <del class="sku__price-del">{{$equipment->cost}} ₽</del>
+                                            @endif
+                                        </p>
+                                        <div class="sku__action">
+                                            <div class="row">
+                                                <div class="col-md-auto">
+                                                    <div class="ui-add-to-cart is-active">
+                                                        @if(! session()->exists('carts') || array_search($equipment->id,array_column(session()->get('carts'),'id')) === false)
+                                                        <a type="button" data-add-to-cart="Добавить в карзину" class="ui-btn ui-btn--primary" href="{{'/add-cart?id='.$equipment->id.'&cost='.$equipment->cost.'&discount='.$equipment->discount}}" >
+                                                            <span>Добавить в карзину</span>
+                                                        </a>
+                                                        @else
+                                                        <a type="button" data-add-to-cart="Добавить в карзину" class="ui-btn ui-btn--primary" href="{{'/delete-cart?id='.$equipment->id}}" style="background-color: orange">
+                                                            <span>Удалить из карзины</span>
+                                                        </a>
+                                                        @endif
+{{--                                                        <div class="ui-number">--}}
+{{--                                                            <button class="ui-number__decrease">--}}
+{{--                                                                <svg class="icon-decrease"><use xlink:href="catalog/view/theme/prostore/sprites/sprite.svg#icon-decrease"></use>--}}
+{{--                                                                </svg>--}}
+{{--                                                            </button>--}}
+{{--                                                            <button class="ui-number__increase">--}}
+{{--                                                                <svg class="icon-increase"><use xlink:href="catalog/view/theme/prostore/sprites/sprite.svg#icon-increase"></use>--}}
+{{--                                                                </svg>--}}
+{{--                                                            </button>--}}
+{{--                                                            <input class="ui-number__input" type="number" name="prod_id_quantity[42053]" min="0" max="9999" value="1">--}}
+{{--                                                        </div>--}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>

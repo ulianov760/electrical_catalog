@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.min.css')}}">
     <link href="{{asset('css/stylesheet.css')}}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{asset('css/style.css')}}" type="text/css" rel="stylesheet" media="screen">
     <link href="{{asset('css/header.css')}}" type="text/css" rel="stylesheet" media="screen">
-
     <link href="{{asset('img/logo_el.png')}}" rel="icon">
-
+    <script src="{{asset('js/script.js')}}"></script>
     <meta property="og:locale" content="ru-ru">
     <meta property="og:rich_attachment" content="true">
 
@@ -119,7 +119,16 @@
                             </ul>
                         </div>
                     </div>
-
+                    <div class="header__acc" style="background-color: orange" >
+                        <a class="header__acc-btn" href="{{(\Illuminate\Support\Facades\Auth::check())? '/cabinet' : '/login'}}">
+                         <img class="icon-acc" src="{{asset('img/user_icon.svg')}}"/>
+                        </a>
+                    </div>
+                    <div class="header__acc" style="background-color: white" id="shop">
+                        <a class="header__acc-btn" href="{{'/carts'}}">
+                            <img class="icon-acc" src="{{asset('img/shop_basket.svg')}}"/>
+                        </a>
+                    </div>
                 </div>
                 <div class="header__row header__row--03">
                     <!-- MAIN NAV  -->
@@ -135,6 +144,31 @@
                 </div>
             </div>
 
+        </div>
+        <div class="pop_up"  id="sign_in" style="display: none;">
+            <div class="popup fancybox-content" id="pop_up_content">
+                <span class="popup__title">Авторизация</span>
+                <div class="popup__form">
+                    <form action="{{'/login'}}" enctype="multipart/form-data" id="loginform" method="post">
+                        @csrf
+                        <label class="ui-label">Электронная почта </label>
+                        <input class="ui-input" type="email" name="email" placeholder="Электронная почта" required>
+                        <label class="ui-label">Пароль</label>
+                        <input class="ui-input" type="password" name="password" placeholder="Пароль" required>
+                        <div class="row">
+                            <div class="col-6">
+                                <button class="ui-btn ui-btn--60 ui-btn--primary ui-btn--fullwidth"  style="background-color: orange" type="submit">Войти</button>
+                            </div>
+                            <div class="col-6">
+                                <a class="ui-btn ui-btn--60 ui-btn--primary ui-btn--fullwidth"  href="{{'/register'}}" style="background-color: gray">Регистрация</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <button  class="fancybox-close" id="sign_close">
+                    <img class="icon-acc" width="20" height="20" src="{{asset('img/close_cross.svg')}}"/>
+                </button>
+            </div>
         </div>
     </header><!-- Header V5 :: End-->
 @yield('main_content')
@@ -156,14 +190,14 @@
             <a class="footer__logo" href="/"><img src="{{asset('img/logo_el.png')}}" style="color: white" title="ULIANOVelektro" alt="ULIANOVelektro"></a>
 
             <p class="footer__copyright" style="color: white">Каталог Электорооборудования
-                <br>  <br> © 2020-2024			</p>
+                <br>  <br> © 2020-2025			</p>
         </div>
 
         <div class="footer__bottom ">
 
             <a class="footer__logo is-xl-visible" href="/"><img src="{{asset('img/logo_el.png')}}" style="color: white" title="ULIANOVelektro" alt="ULIANOVelektro"></a>
 
-            <p class="footer__copyright is-xl-visible" style="color: white">Каталог Электорооборудования, © 2020-2024 </p>
+            <p class="footer__copyright is-xl-visible" style="color: white">Каталог Электорооборудования, © 2020-2025 </p>
         </div>
     </div>
 

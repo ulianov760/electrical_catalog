@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Traits\HasImage;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
@@ -10,12 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
-class Equipments extends Model
+class ElectricalEquipment extends Model
 {
     use HasImage;
     use CrudTrait;
     use HasFactory;
+
+    protected $table = 'electrical_equipments';
+
 
     protected $fillable = [
         'id',
@@ -24,6 +24,10 @@ class Equipments extends Model
         'description',
         'characters',
         'category_id',
+        'discount',
+        'count',
+        'cost',
+        'is_deleted',
     ];
 
     public function category(): BelongsTo

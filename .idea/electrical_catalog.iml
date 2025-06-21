@@ -122,6 +122,12 @@
       <excludeFolder url="file://$MODULE_DIR$/source-code/vendor/backpack/crud" />
       <excludeFolder url="file://$MODULE_DIR$/source-code/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/source-code/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/source-code/vendor/livewire/livewire" />
+      <excludeFolder url="file://$MODULE_DIR$/source-code/vendor/laravel/sanctum" />
+      <excludeFolder url="file://$MODULE_DIR$/source-code/vendor/outhebox/blade-flags" />
+      <excludeFolder url="file://$MODULE_DIR$/source-code/vendor/blade-ui-kit/blade-icons" />
+      <excludeFolder url="file://$MODULE_DIR$/source-code/vendor/backpack/language-switcher" />
+      <excludeFolder url="file://$MODULE_DIR$/source-code/vendor/kerigard/laravel-lang-ru" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
